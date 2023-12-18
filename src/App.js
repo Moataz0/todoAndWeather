@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import {
+  ThemeProvider,
+  createTheme,
+  CssBaseline,
+  Container,
+  Switch,
+} from "@mui/material";
+import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
+import WeatherWidget from "./components/Weather";
 
-function App() {
+const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? "dark" : "light",
+    },
+  });
+
+  const handleToggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container component="main">
+        <CssBaseline />
+        <h1>Todo App</h1>
+        <Switch
+          checked={darkMode}
+          onChange={handleToggleDarkMode}
+          color="primary"
+          name="darkModeToggle"
+        />
+        <span>{darkMode ? "Dark Mode" : "Light Mode"}</span>
+        <TodoForm />
+        <TodoList />
+        <WeatherWidget />
+      </Container>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

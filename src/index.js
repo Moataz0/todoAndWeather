@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+import todosReducer from "./features/todos/todosSlice";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import DetailedWeatherPage from "./components/DetailedWeatherPage";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+const store = configureStore({
+  reducer: {
+    todos: todosReducer,
+  },
+});
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/weather-details" element={<DetailedWeatherPage />} />
+      </Routes>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
