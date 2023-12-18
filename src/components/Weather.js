@@ -50,7 +50,7 @@ const WeatherWidget = () => {
   useEffect(() => {
     // Function to fetch weather data
     const fetchWeatherData = async (latitude, longitude) => {
-      const apiKey = "a2f02a5aeb4c5304e04b4c029872978d";
+      const apiKey = "YOUR_OPENWEATHERMAP_API_KEY";
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
       try {

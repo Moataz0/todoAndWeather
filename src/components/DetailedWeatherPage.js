@@ -45,7 +45,7 @@ const DetailedWeatherPage = () => {
 
   useEffect(() => {
     const fetchWeatherData = async (latitude, longitude) => {
-      const apiKey = "a2f02a5aeb4c5304e04b4c029872978d";
+      const apiKey = "YOUR_OPENWEATHERMAP_API_KEY";
       // const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&cnt=5`;
       const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=minutely&appid=${apiKey}`;
 
